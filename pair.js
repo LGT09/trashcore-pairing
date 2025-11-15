@@ -62,7 +62,7 @@ router.get('/', async (req, res) => {
                     
                     let session = await Pair_Code_By_Traxxion_Tech.sendMessage(
                         Pair_Code_By_Traxxion_Tech.user.id,
-                        { text: 'trashcore~' + b64data }
+                        { text: 'GAGA~' + b64data }
                     );
 
                     let Traxxion_MD_TEXT = `
