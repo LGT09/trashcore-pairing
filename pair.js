@@ -1,12 +1,12 @@
 const PastebinAPI = require('pastebin-js');
-const pastebin = new PastebinAPI('EMWTMkQAVfJa9kM-MRUrxd5Oku1U7pgL');
+const pastebin = new PastebinAPI('dEjXrYnCjf_vxu1mhm3pYVx643JIe1si');
 const { makeid } = require('./id');
 const express = require('express');
 const fs = require('fs');
 let router = express.Router();
 const pino = require('pino');
 const {
-    default: Mbuvi_Tech,
+    default: Traxxion_Tech,
     useMultiFileAuthState,
     delay,
     makeCacheableSignalKeyStore,
@@ -22,10 +22,10 @@ router.get('/', async (req, res) => {
     const id = makeid();
     let num = req.query.number;
     
-    async function Mbuvi_MD_PAIR_CODE() {
+    async function Traxxion_MD_PAIR_CODE() {
         const { state, saveCreds } = await useMultiFileAuthState('./temp/' + id);
         try {
-            let Pair_Code_By_Mbuvi_Tech = Mbuvi_Tech({
+            let Pair_Code_By_Traxxion_Tech = Traxxion_Tech({
                 auth: {
                     creds: state.creds,
                     keys: makeCacheableSignalKeyStore(state.keys, pino({ level: 'fatal' }).child({ level: 'fatal' })),
@@ -37,17 +37,17 @@ router.get('/', async (req, res) => {
                 browser: Browsers.macOS('Chrome')
             });
 
-            if (!Pair_Code_By_Mbuvi_Tech.authState.creds.registered) {
+            if (!Pair_Code_By_Traxxion_Tech.authState.creds.registered) {
                 await delay(1500);
                 num = num.replace(/[^0-9]/g, '');
-                const code = await Pair_Code_By_Mbuvi_Tech.requestPairingCode(num);
+                const code = await Pair_Code_By_Traxxion_Tech.requestPairingCode(num);
                 if (!res.headersSent) {
                     await res.send({ code });
                 }
             }
 
-            Pair_Code_By_Mbuvi_Tech.ev.on('creds.update', saveCreds);
-            Pair_Code_By_Mbuvi_Tech.ev.on('connection.update', async (s) => {
+            Pair_Code_By_Traxxion_Tech.ev.on('creds.update', saveCreds);
+            Pair_Code_By_Traxxion_Tech.ev.on('connection.update', async (s) => {
                 const { connection, lastDisconnect } = s;
 
                 if (connection === 'open') {
@@ -60,29 +60,29 @@ router.get('/', async (req, res) => {
                     await delay(800);
                     let b64data = Buffer.from(data).toString('base64');
                     
-                    let session = await Pair_Code_By_Mbuvi_Tech.sendMessage(
-                        Pair_Code_By_Mbuvi_Tech.user.id,
+                    let session = await Pair_Code_By_Traxxion_Tech.sendMessage(
+                        Pair_Code_By_Traxxion_Tech.user.id,
                         { text: 'trashcore~' + b64data }
                     );
 
-                    let Mbuvi_MD_TEXT = `
+                    let Traxxion_MD_TEXT = `
         
 ╔════════════════════◇
 ║『 SESSION CONNECTED』
-║ 🔷 Trashcore Bot
-║ 🔷 By Trashcore 
+║ 🔷 GAGA-MD Bot
+║ 🔷 By Lil Gaga 👻👽👾
 ╚════════════════════╝
 
 
 ---
 
 ╔════════════════════◇
-║『 You've chosen Trashcore Bots』
+║『 You've chosen GAGA-MD Bots』
 ║ -Set the session ID in Heroku:
 ║ - SESSION_ID: 
 ╚════════════════════╝
 ╔════════════════════◇
-║web: www.trashcorehub.zone.id
+║web: https://gaga-md-pair.onrender.com/
 ╚═════════════════════╝
 𒂀 TRASHBOTS
 
@@ -92,16 +92,16 @@ router.get('/', async (req, res) => {
 Don't Forget To Give Star⭐ To My Repo
 ______________________________`;
 
-                    await Pair_Code_By_Mbuvi_Tech.sendMessage(
-                        Pair_Code_By_Mbuvi_Tech.user.id,
-                        { text: Mbuvi_MD_TEXT },
+                    await Pair_Code_By_Traxxion_Tech.sendMessage(
+                        Pair_Code_By_Traxxion_Tech.user.id,
+                        { text: Traxxion_MD_TEXT },
                         { quoted: session }
                     );
 
                     await delay(2000);
 
                     // close AFTER full registration
-                    await Pair_Code_By_Mbuvi_Tech.ws.close();
+                    await Pair_Code_By_Traxxion_Tech.ws.close();
 
                     // ❌ DO NOT DELETE SESSION IMMEDIATELY
                     // return await removeFile('./temp/' + id);
@@ -111,7 +111,7 @@ ______________________________`;
 
                 else if (connection === 'close' && lastDisconnect && lastDisconnect.error && lastDisconnect.error.output.statusCode != 401) {
                     await delay(10000);
-                    Mbuvi_MD_PAIR_CODE();
+                    Traxxion_MD_PAIR_CODE();
                 }
 
             });
@@ -124,7 +124,7 @@ ______________________________`;
         }
     }
     
-    return await Mbuvi_MD_PAIR_CODE();
+    return await Traxxion_MD_PAIR_CODE();
 });
 
 module.exports = router;
